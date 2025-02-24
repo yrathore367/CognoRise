@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Diya!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Lora:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* Body: Center the content */
+    body {
+      font-family: 'Lora', serif;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      color: #495057;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Heading style */
+    h1 {
+      font-size: 3.5em;
+      color: #6f42c1;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Paragraph style */
+    p {
+      font-size: 1.5em;
+      color: #6c757d;
+      margin: 20px 0;
+      font-weight: normal;
+    }
+
+    /* Birthday message container style */
+    .birthday-message {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 1.6em;
+      color: #343a40;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.05);
+      display: none;
+      opacity: 0;
+      animation: fadeInMessage 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeInMessage {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Input form container style */
+    .input-container {
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .input-container input {
+      padding: 12px;
+      font-size: 1.2em;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    .input-container button {
+      padding: 12px 30px;
+      font-size: 1.2em;
+      background-color: #6f42c1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .input-container button:hover {
+      background-color: #5a32a3;
+    }
+
+    /* Confetti Animation */
+    .confetti {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      display: none;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #6f42c1;
+      animation: fall 2s infinite linear;
+      opacity: 0;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div>
+    <h1>Happy Birthday wishes to you</h1>
+
+    <div class="input-container">
+      <p>Enter your name and age to send your wishes!</p>
+      <input type="text" id="name" placeholder="Enter your name" />
+      <input type="number" id="age" placeholder="Enter your age" />
+      <button onclick="generateBirthdayWish()">Submit</button>
+    </div>
+
+    <div class="birthday-message" id="birthdayMessage">
+      <p>Wishing you a wonderful birthday, <span id="displayName"></span>!</p>
+      <p>You are turning <span id="displayAge"></span> today!</p>
+      <p>May this year bring you endless happiness and all your heart's desires. Have an amazing day! 🎉</p>
+    </div>
+
+    <!-- Confetti effect -->
+    <div class="confetti" id="confetti"></div>
+  </div>
+
+  <script>
+    function generateBirthdayWish() {
+      var name = document.getElementById('name').value;
+      var age = document.getElementById('age').value;
+
+      if (name && age) {
+        document.getElementById('displayName').textContent = name;
+        document.getElementById('displayAge').textContent = age;
+        document.getElementById('birthdayMessage').style.display = 'block';
+
+        // Trigger confetti animation
+        showConfetti();
+      } else {
+        alert("Please enter both your name and age.");
+      }
+    }
+
+    function showConfetti() {
+      var confettiContainer = document.getElementById("confetti");
+      confettiContainer.style.display = "block";
+      for (var i = 0; i < 50; i++) {
+        var confettiPiece = document.createElement("div");
+        confettiPiece.classList.add("confetti-piece");
+        confettiPiece.style.left = Math.random() * 100 + "%";
+        confettiPiece.style.animationDelay = Math.random() * 2 + "s";
+        confettiContainer.appendChild(confettiPiece);
+      }
+    }
+  </script>
+
+</body>
+</html>
